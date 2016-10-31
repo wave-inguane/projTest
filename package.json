@@ -1,27 +1,27 @@
 {
-  "name": "swe-432-proj",
+  "name": "public",
   "version": "1.0.0",
-  "description": "Our 4 scenarios are as follows:",
+  "description": "",
   "main": "index.js",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "firebase": "^3.5.1",
-    "google-cloud": "^0.43.0",
-    "multer": "^1.2.0"
-  },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tom-wil/swe-432-proj.git"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tom-wil/swe-432-proj/issues"
-  },
-  "homepage": "https://github.com/tom-wil/swe-432-proj#readme"
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "firebase": "^3.5.1",
+    "fs": "0.0.1-security",
+    "google-cloud": "^0.42.2",
+    "multer": "^1.2.0",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "sentiment": "^2.1.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.2"
+  }
 }

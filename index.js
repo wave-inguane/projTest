@@ -7,16 +7,19 @@ app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
-
 var multer = require('multer');
+
 var uploader = multer({
     storage: multer.memoryStorage({})
 });
 var gcloud = require('google-cloud');
 
-var CLOUD_BUCKET = "swe432project.appspot.com"; //From storage console, list of buckets
+/**
+ * Google cloud storage part
+ */
+var CLOUD_BUCKET="dbgamespider.appspot.com"; //From storage console, list of buckets
 var gcs = gcloud.storage({
-    projectId: 'swe432project', //from storage console, then click settings, then "x-goog-project-id"
+    projectId: '315500031833', //from storage console, then click settings, then "x-goog-project-id"
     keyFilename: 'privkey.json' //the key we already set up
 });
 
@@ -64,10 +67,12 @@ function sendUploadToGCS(req, res, next) {
     stream.end(req.file.buffer);
 }
 
+//warm up the database
 firebase.initializeApp({
     serviceAccount: "privkey.json",
-    databaseURL: "https://swe432project.firebaseio.com"
+    databaseURL: "https://dbgamespider.firebaseio.com"
 });
+
 var fireRef = firebase.database().ref('users');
 
 var port = process.env.PORT || 3000;
@@ -195,5 +200,5 @@ app.use(express.static('public'));
 
 
 app.listen(port, function() {
-    console.log('Example app listening on port ' + port);
+    console.log('Server started: http://localhost:'  + port);
 });
