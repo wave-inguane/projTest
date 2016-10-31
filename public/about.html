@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>About</title>
+    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="css/about.css" type="text/css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://fb.me/react-15.0.0.js"></script>
+    <script src="https://fb.me/react-dom-15.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script type="text/javascript" src="scripts/home.js"></script>
+
+    <!--
+    <script src="../jQuery/jquery.js"></script>
+    <script src="../js/01.js"></script>
+     -->
+
+</head>
+<body>
+<div id="about-game-spider"></div>
+<script type="text/babel">
+    //------------------------------------------------------
+    //REQUIRES: none
+    //
+    //EFFECTS: return Header, Content and Footer components
+    //-------------------------------------------------------
+    class AboutGameSpider extends React.Component {
+        render() {
+            return (
+                <div>
+                    <Header/>
+                     <Content/>
+                    <Footer/>
+                </div>
+                );
+            }
+        }
+
+    //------------------------------------------------------
+    //REQUIRES: none
+    //
+    //EFFECTS: call Navigation component
+    //         returns the logo and the page navigation
+    //-------------------------------------------------------
+    class Header extends React.Component {
+            render() {
+
+                var attr = [{url:"http://pngimg.com/upload/spider_PNG45.png"},
+                    {alt:"Home Page Logo"},
+                    {class:"align-left medium" }]
+                return (
+                        <div id="header">
+                            <img src={attr[0].url} alt={attr[1].alt} className={attr[2].class} />
+                          <Navigation/>
+                        </div>
+                );
+            }
+        }
+
+    //-------------------------------------------------------
+    //REQUIRES: none
+    //
+    //EFFECTS: returns the page navigation
+    //-------------------------------------------------------
+    class Navigation extends React.Component {
+            render() {
+                return (
+                        <div id="nav">
+                            <ul id="put-nav-right-top-conner">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="register.html">Register</a></li>
+                                <li><a href="about.html">About</a></li>
+                            </ul>
+                        </div>
+                );
+            }
+        }
+
+    //-------------------------------------------------------
+    //REQUIRES: none
+    //
+    //EFFECTS: returns about message
+    //-------------------------------------------------------
+    class Content extends React.Component {
+            render() {
+                return (
+                        <div id="content">
+                            <div id="feature">
+                                <h2><a target="_parent" href="index.html">Game Spider</a></h2>
+                            </div>
+
+                            <div className="article-about column1">
+                                <h1 id="shift-right" >About</h1>
+                                <p className="readable-font padded-about-paragraph">
+                                    Game Spider helps users to quickly and efficiently purchase video games.
+                                    Game Spider compares the prices of video games among top retailers, giving
+                                    users the ability to guarantee they are getting the best deal. In today's
+                                    economy everyone is trying to save both time and money, and we strive to
+                                    help our users do just that when it comes to video game purchasing.</p>
+                            </div>
+                        </div>
+                );
+            }
+        }
+
+    //-------------------------------------------------------
+    //REQUIRES: none
+    //
+    //EFFECTS: returns copyright information
+    //-------------------------------------------------------
+    class Footer extends React.Component {
+            render() {
+                return (
+                        <div className="row1" id="footer">
+                            <p>&copy; Copyright 2016 Tom, Avelino and Chris</p>
+                        </div>
+                );
+            }
+        }
+
+    ReactDOM.render(<AboutGameSpider />,document.getElementById('about-game-spider'));
+    </script>
+
+</body>
+</html>

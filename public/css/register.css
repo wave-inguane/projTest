@@ -1,0 +1,14 @@
+.column1{
+    margin-top: 1em;
+    height: 25em;
+    margin-bottom: 1em;
+    background-color: #efefef; /* for debugging*/
+    text-align: center;
+    border-radius: 10px;
+    overflow: auto;
+    width: 90%;
+}
+
+.readable-font{
+    font-size: 1.0em;
+}

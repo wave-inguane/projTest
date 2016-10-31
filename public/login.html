@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="css/login.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+<div id="header">
+
+    <img src="http://pngimg.com/upload/spider_PNG45.png"
+         alt="Home Page" class="align-left medium" />
+
+    <div id="nav">
+        <ul id="put-nav-right-top-conner">
+            <li id="username_display"></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    <div id="content">
+        <div id="feature">
+            <h2><a target="_parent" href="index.html">Game Spider</a></h2>
+        </div>
+
+        <div class="article column1">
+            <p><h1>User Login</h1></p>
+
+            <div>
+			    
+                <form action="">
+             
+                    <p><label>Email:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="email" type="text" placeholder="johndoe@gmail.com" /></label></p>
+                    <p><label>Password: <input id="password" type="password" minlength="5" placeholder="pass" /></label></p>
+                    <button type="button" id="submit" data-page="login">Submit</button>
+					<button type="button" id="change"><a href="reset_password.html" style="color:black; text-decoration:none">Forgot Password</a></button>
+                    <button type="button" id="clear_login_form">Clear</button>
+                    <!-- <p id="login">  </p> --> 
+                </form>
+            </div>
+			<div id="login_results">
+			
+			       <!-- RESULTS from logging in via REACT -->
+				   
+			</div>
+
+        </div>
+
+</div>
+<div  class="row1"id="footer">
+    <p>&copy; Copyright 2016 Tom, Avelino and Chris</p> 
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<!--<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCQWye4OhRjS9WevJyoc9D-VMRLgowU6Ls",
+    authDomain: "swe432project.firebaseapp.com",
+    databaseURL: "https://swe432project.firebaseio.com",
+    storageBucket: "swe432project.appspot.com",
+    messagingSenderId: "243366621579"
+  };
+  firebase.initializeApp(config);
+</script>-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://fb.me/react-15.0.0.js"></script>
+<script src="https://fb.me/react-dom-15.0.0.js"></script>
+<script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+<script type="text/javascript" src="scripts/login.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="scripts/jasmine/lib/jasmine-2.5.2/jasmine.css"> 
+<script type="text/javascript" src="scripts/jasmine/lib/jasmine-2.5.2/jasmine.js"></script>
+<script type="text/javascript" src="scripts/jasmine/lib/jasmine-2.5.2/jasmine-html.js"></script>
+<script type="text/javascript" src="scripts/jasmine/lib/jasmine-2.5.2/boot.js"></script>  -->
+
+<script type="text/babel">
+
+class Login extends React.Component{
+  constructor() {
+      super();
+      this.state = {login: ""};
+  }
+  componentWillMount(){
+	ReactLoginThis = this;
+  }
+  render(){
+      console.log(this.state.login);
+	  var returnVal;
+	  if(this.state.login == "fail")
+	      returnVal = "Incorrect Username or Password";
+	  else if(this.state.login == "pass")
+          {
+	      returnVal = "Successfully Logged In";
+          }
+	  else
+	      returnVal = "";
+      return <div>
+	             <p>{returnVal}</p>
+		     </div>;
+  }
+};
+
+ReactDOM.render(   
+  <Login />,
+  document.getElementById('login_results')
+);
+/*
+
+//  --  JASMINE --
+describe('Login', function() {
+                var TestUtils = React.addons.TestUtils;
+                var component, element, renderedDOM;
+				
+                beforeEach(function(){
+                    element = React.createElement(Login);
+                    component = TestUtils.renderIntoDocument(element);
+					//spyOn(ClassName.prototype, "get_bestbuy_prices");
+                });
+                it("Has correct Buttons", function(){
+                    let buttons =  $("button");
+					console.log(buttons[0]);     //previousButton 
+					console.log(buttons[1]);     //nextButton
+                    expect(buttons[0]).not.toBeUndefined();
+                    expect(buttons[0].innerHTML).toBe("Submit");      //submit
+					expect(buttons[1]).not.toBeUndefined();
+					console.log(buttons[1].innerHTML);
+					//expect(buttons[1].innerHTML).toBe("<a href="reset_password.html" style="color:black; text-decoration:none">Forgot Password</a>");  //forgot pass
+					expect(buttons[2]).not.toBeUndefined();
+					expect(buttons[2].innerHTML).toBe("Clear");   //clear
+                });
+                it("Has an initial empty login", function(){
+                    expect(component.state.login).toEqual("");
+                });
+			
+});
+
+
+describe("Button Functionality", function(){
+    var TestUtils = React.addons.TestUtils;
+    var component, element, renderedDOM;
+	   element = React.createElement(Login);
+       component = TestUtils.renderIntoDocument(element);    
+	   
+	beforeEach(function(){
+
+	   let buttons =  $("button");
+	   let submitButton = buttons[0];
+
+	   
+       let textfields = $("input");
+	   textfields[0].value = "tommywil@live.com";
+	   textfields[1].value = "chat";
+	   
+  	 
+        
+		spyOn(usersRef, "once").and.callFake(function(param)
+		{
+		    console.log("spying");
+			component.setState({login: "pass"});           //This happens on successfully database calls
+		});
+
+        submitButton.click();	
+
+    });
+ 
+    it("Submit Causes fireBase push to be called if user not in database", function(){  
+       expect(usersRef.once).toHaveBeenCalled();
+    });
+	it("Has a changed state after successfully registering", function(){
+		console.log(ReactLoginThis.state.login)                                  //THIS SHOULD BE "PASS"
+        expect(component.state.login).toEqual("pass");
+    });
+	it("Clear button clears the form", function(){
+	    let textfields = $("input");
+		let buttons = $("button");
+		let clearButton = buttons[2];
+		
+		clearButton.click();
+		
+		expect(textfields[0].value).toBe("");
+		expect(textfields[1].value).toBe("");
+		
+	});
+});	
+*/
+			
+</script>
+
+
+</body>
+</html>

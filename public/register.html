@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <link href="css/styles.css" type="text/css" rel="stylesheet" />
+    <link href="css/register.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<div id="header">
+    <img src="http://pngimg.com/upload/spider_PNG45.png"
+         alt="Home Page" class="align-left medium" />
+    <div id="nav">
+        <ul id="put-nav-right-top-conner">
+            <li id="username_display"></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div id="feature">
+        <h2><a target="_parent" href="index.html">Game Spider</a></h2>
+    </div>
+
+    <div class="article column1">
+        <p><h1>Register</h1></p>
+
+        <form id="regForm" action="/database" method="post" enctype="multipart/form-data">
+            <!--Temp padding &nbsp;&nbsp; to be replace with css element-->
+		    <label>Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="email" type="email" name="email" />
+                <div class="invisible">Please enter a valid email.</div>
+            </label>
+            <p><label>Password: &nbsp;<input id="password" type="password" name="pass" minlength="5" /></label></p>
+			<p><label>First Name: <input id="first" name="first" type="text" minlength="1" /></label></p>
+            <p><label>Last Name: <input id="last" name="last" type="text" minlength="1" /></label></p>
+            <p>Date of Birth: &nbsp;&nbsp;&nbsp;<input id="dob" name="dob" type="date" /></p>
+            <p><label><input type="file" id="image_file" name="img" /></label></p>
+            <button type="button" id="submit" data-page="register">Submit</button>
+            <button type="button" id="clear_register_form" >Clear</button>
+            <!-- <p id="register">  </p> --> <!-- Display -->
+        </form>
+		
+		<div id="register_results">
+			
+			       <!-- RESULTS from registering via REACT -->
+				   
+		</div>
+
+    </div>
+
+</div>
+
+<div class="row1" id="footer">
+    <p>&copy; Copyright 2016 Tom, Avelino and Chris</p>  
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://fb.me/react-15.0.0.js"></script>
+<script src="https://fb.me/react-dom-15.0.0.js"></script> 
+<script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+<script type="text/javascript" src="scripts/login.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="scripts/jasmine/lib/jasmine-2.5.2/jasmine.css"> 
+<script type="text/javascript" src="scripts/jasmine/lib/jasmine-2.5.2/jasmine.js"></script>
+<script type="text/javascript" src="scripts/jasmine/lib/jasmine-2.5.2/jasmine-html.js"></script>
+<script type="text/javascript" src="scripts/jasmine/lib/jasmine-2.5.2/boot.js"></script>      -->
+
+<script type="text/babel">
+
+class Register extends React.Component{
+  constructor() {
+      super();
+      this.state = {register: ""};
+  }
+  componentWillMount(){
+	ReactRegisterThis = this;
+  }
+  render(){
+      console.log(this.state.register);
+	  var returnVal;
+	  if(this.state.register == "fail")
+	      returnVal = "Email already registerd";
+	  else if(this.state.register == "pass")
+	      returnVal = "Successfully Registered";
+	  else
+	      returnVal = "";
+      return <div>
+	             <p>{returnVal}</p>
+		     </div>;
+  }
+};
+
+ReactDOM.render(   
+  <Register />,
+  document.getElementById('register_results')
+);
+/*
+describe('Register', function() {
+    var TestUtils = React.addons.TestUtils;
+    var component, element, renderedDOM;
+				
+    beforeEach(function(){
+        element = React.createElement(Register);
+        component = TestUtils.renderIntoDocument(element);
+    });
+    
+	it("Has correct Buttons", function(){
+        let buttons =  $("button");
+        expect(buttons[0]).not.toBeUndefined();
+        expect(buttons[0].innerHTML).toBe("Submit");      //submit
+		expect(buttons[1]).not.toBeUndefined();
+	    expect(buttons[1].innerHTML).toBe("Clear");   //clear
+    });
+    it("Has an initial empty register", function(){
+        expect(component.state.register).toEqual("");
+    });
+				
+});
+
+describe("Button Functionality", function(){
+    var TestUtils = React.addons.TestUtils;
+    var component, element, renderedDOM;
+    
+	beforeEach(function(done){
+       element = React.createElement(Register);
+       component = TestUtils.renderIntoDocument(element);
+					
+	   let buttons =  $("button");
+	   let submitButton = buttons[0];
+	   console.log(submitButton);
+	   
+       let textfields = $("input");
+	   textfields[0].value = "something@aol.com";
+	   textfields[1].value = "blank";
+	   textfields[2].value = "something";
+	   textfields[3].value = "again";
+	   textfields[4].value = "2014-02-09";
+	   
+	   submitButton.click();
+	
+        spyOn(usersRef, "push").and.callFake(function(param)
+		{
+		    console.log("spying");
+			done();
+		});
+    });
+ 
+    it("Submit Causes fireBase push to be called if user not in database", function(done){
+       let textfields = $("input");   
+       expect(usersRef.push).toHaveBeenCalled();
+	   expect(usersRef.push).toHaveBeenCalledWith({first: textfields[2].value, last: textfields[3].value, email: textfields[0].value, pass: textfields[1].value, dob: textfields[4].value});
+	   done();
+    });
+	it("Has a changed state after successfully registering", function(){
+        expect(component.state.register).toEqual("pass");
+    });
+	it("Clear button clears the form", function(){
+	    let textfields = $("input");
+		let buttons = $("button");
+		let clearButton = buttons[1];
+		
+		clearButton.click();
+		
+		expect(textfields[0].value).toBe("");
+		expect(textfields[1].value).toBe("");
+		expect(textfields[2].value).toBe("");
+		expect(textfields[3].value).toBe("");
+		expect(textfields[4].value).toBe("");
+		
+	});
+});	
+*/
+
+</script>
+
+</body>
+</html>

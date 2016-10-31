@@ -1,0 +1,232 @@
+/* -----------------------------------
+ Liquid Layout-Adjust to screen size
+-------------------------------------*/
+body {
+    width: 90%;
+    margin: 0 auto;
+
+    font-family:  Arial, sans-serif, Trebuchet MS, Trebuchet, Verdana ;
+    font-size: 0.9em;
+
+   color: #807c72;
+
+}
+
+#content {
+    width: 80%;/* -- */
+    overflow: auto;
+}
+
+#nav, #feature, #footer {
+    margin: 1%;}
+
+.rowTN {
+    width: 31.3%;
+    /*float: left;*/
+    float: none;
+    margin: 1%;
+}
+
+.row1 {
+   /* height: 5em;*/
+    margin-bottom: 1em;
+    background-color: #efefef; /* for debugging*/
+    text-align: center;
+    border-radius: 10px;
+    overflow: auto;
+    width: 90%;
+}
+
+.row2 {
+   /* height: 5em;*/
+    margin-bottom: 1em;
+    background-color: #efefef; /* for debugging*/
+    text-align: center;
+    border-radius: 10px;
+    overflow: auto;
+    width: 90%;
+}
+
+/*row3 */
+    div#search_games{
+   /* margin-right: 0%;*/
+    margin-top: 1em;
+    height: 13em;
+    margin-bottom: 1em;
+    background-color: #efefef; /* for debugging*/
+    text-align: center;
+    border-radius: 10px;
+    overflow: auto;
+    width: 90%;
+}
+
+/* row4 */
+div#browse_games{
+    /*height: 5em;*/
+    margin-bottom: 1em;
+    background-color: #efefef;
+    text-align: center;
+    border-radius: 10px;
+    overflow: auto;
+    width: 90%;
+}
+
+.row5 {
+
+    text-align: center;
+    border-radius: 10px;
+    overflow: auto;
+    width: 90%;
+}
+
+.column1{
+    width: 45%;
+    float: left;
+    margin: 1%;
+    border-radius: 4px;
+    overflow: auto;
+    border:1px solid steelblue;
+    
+}
+
+.column2{
+    width: 45%;
+    float: right;
+    margin: 1%;
+    border-radius: 10px;
+    overflow: auto;
+    border:0px solid steelblue;
+}
+
+.column3{
+    width: 45%;
+    float: right;
+    margin: 1%;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+li {
+    display: inline;
+    padding: 0.5em;}
+
+#nav, #footer {
+    background-color: #efefef;
+    padding: 0.5em 0;}
+
+/* Game Spider */
+#feature {
+    height: 5em;
+    margin-bottom: 1em;
+
+}
+
+.article {
+    height: 10em;
+    margin-bottom: 1em;
+    background-color: #efefef;
+}
+
+
+.article-about{
+    height: 11em;
+    margin-bottom: 1em;
+    background-color: #efefef;
+}
+
+img.align-left {
+    float: left;
+    margin-right: 10px;
+    background-color: rgba(34, 48, 249, 0.98);
+    /*opacity: 0.5;*/
+}
+
+img.medium {
+    width: 150px;
+    height: 150px;
+}
+
+
+ul#put-nav-right-top-conner {
+    float: right;
+}
+
+#footer p {
+    text-align: center;
+}
+
+
+.centered-text p h1 h4{
+    font-size: 100%;
+    font-family: arial;
+    text-align: center;
+
+}
+
+/*Not used */
+.search-or-browse-for-game h4{
+    /*font-family:  Arial, sans-serif, Trebuchet MS, Trebuchet, Verdana ;*/
+    font-size: 1.2em;
+    text-align: center;
+    color: #807c72;
+}
+
+div.align-form  {
+    border-bottom: 1px solid #efefef;
+    margin: 10px;
+    padding-bottom: 10px;
+    width: 260px;
+    float: none;
+    overflow: auto;
+    width: 90%;
+
+}
+
+#result_body{
+    border-bottom: 1px solid #efefef;
+    margin: 10px;
+    padding-bottom: 10px;
+    width: 260px;
+    float: none;
+    overflow: auto;
+    width: 90%;
+}
+
+
+table#centered-table{
+    border-bottom: 1px solid #efefef;
+    margin: 10px;
+    padding-bottom: 10px;
+    width: 260px;
+    float: none;
+    overflow: auto;
+    width: 90%;
+}
+
+
+table {
+    width: 65%;
+}
+th, td {
+    padding: 5px 10px 10px 10px;}
+th {
+    letter-spacing: 0.1em;
+    font-size: 1.1em;
+}
+
+fieldset {
+    border: 0.1px solid #efefef;/*#dcdcdc;*/
+    border-radius: 10px;
+    padding: 20px 20px 20px 50%;
+    text-align: left;
+}
+
+legend {
+    border: 0.1px solid #efefef;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+
