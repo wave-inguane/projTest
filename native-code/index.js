@@ -7,20 +7,6 @@ app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
-
-// Additional middleware which will set headers that we need on each request.
-app.use(function(req, res, next) {
-    // Set permissive CORS header - this allows this server to be used only as
-    // an API server in conjunction with something like webpack-dev-server.
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Disable caching so we'll always get the latest data.
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
-});
-
-
-
 var multer = require('multer');
 
 var uploader = multer({
@@ -90,8 +76,6 @@ firebase.initializeApp({
 var fireRef = firebase.database().ref('users');
 
 var port = process.env.PORT || 3000;
-
-
 
 //Make a new one (REGISTRATION)
 app.post('/upload', uploader.single("img"), sendUploadToGCS, function(req, res, next) {
@@ -218,7 +202,3 @@ app.use(express.static('public'));
 app.listen(port, function() {
     console.log('Server started: http://localhost:'  + port);
 });
-
-
-
-

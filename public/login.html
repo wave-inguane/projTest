@@ -5,6 +5,26 @@
     <title>Login</title>
     <link href="css/styles.css" type="text/css" rel="stylesheet" />
     <link href="css/login.css" type="text/css" rel="stylesheet" />
+    <!-- COPY AND PASTE THE WEB SETUP SNIPPET HERE: -->
+    <!-- COPY AND PASTE THE WEB SETUP SNIPPET HERE: -->
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDs8pLSj9ZIqrkm0NAPV3cj58vPBghHFg8",
+            authDomain: "dbgamespider.firebaseapp.com",
+            databaseURL: "https://dbgamespider.firebaseio.com",
+            storageBucket: "dbgamespider.appspot.com",
+            messagingSenderId: "315500031833"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <!-- END OF WEB SNIPPET -->
+    <!-- END OF WEB SNIPPET -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
@@ -34,7 +54,6 @@
             <p><h1>User Login</h1></p>
 
             <div>
-			    
                 <form action="">
              
                     <p><label>Email:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="email" type="text" placeholder="johndoe@gmail.com" /></label></p>
@@ -46,31 +65,45 @@
                 </form>
             </div>
 			<div id="login_results">
-			
 			       <!-- RESULTS from logging in via REACT -->
-				   
 			</div>
-
         </div>
-
+        <div id="container">
+            <!--<h3>FirebaseUI Demo</h3>-->
+            <div id="loading"></div>
+            <div id="loaded" class="hidden">
+                <div id="main">
+                    <div id="user-signed-in" class="hidden">
+                        <div id="user-info">
+                            <div id="photo-container">
+                                <img id="photo"></img>
+                            </div>
+                            <div id="name"></div>
+                            <div id="emailx"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>
+                            <button id="sign-out">Sign Out</button>
+                            <button id="delete-account">Delete account</button>
+                        </p>
+                    </div>
+                    <div id="user-signed-out" class="hidden">
+                        <!--<h4>You are signed out.</h4> -->
+                        <p></p>
+                        <div id="firebaseui-spa">
+                            <!-- <h5>Single Page Application mode:</h5> -->
+                            <div id="firebaseui-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="scripts/oAuth.js"></script>
+        <!-- end oAuth -->
 </div>
 <div  class="row1"id="footer">
     <p>&copy; Copyright 2016 Tom, Avelino and Chris</p> 
 </div>
-
-
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-<!--<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCQWye4OhRjS9WevJyoc9D-VMRLgowU6Ls",
-    authDomain: "swe432project.firebaseapp.com",
-    databaseURL: "https://swe432project.firebaseio.com",
-    storageBucket: "swe432project.appspot.com",
-    messagingSenderId: "243366621579"
-  };
-  firebase.initializeApp(config);
-</script>-->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://fb.me/react-15.0.0.js"></script>
@@ -195,7 +228,6 @@ describe("Button Functionality", function(){
 */
 			
 </script>
-
 
 </body>
 </html>

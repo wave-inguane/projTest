@@ -7,6 +7,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="scripts/amazon/sha2.js" type="text/javascript"></script>
         <script src="scripts/amazon/amazon_api.js" type="text/javascript"></script>
+
+
+
+        <!-- OAuth -->
+        <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
     </head>
     <body>
         <!--                                  NAVIGATION                              -->
@@ -83,6 +89,10 @@
             </div>
             <!--                          SEARCH RESULTS                           -->
             <div class="row5" align="center">
+
+                <!--  SEARCH TRACKER -->
+                <p id="tracking"></p>
+
                 <div class="column1" id="table" align="center">
                     <!-- REACT RESULTS HERE -->
                 </div>
@@ -342,6 +352,82 @@
 			*/
 			
             
+        </script>
+        <!--
+            //-------------------------------------------------------------
+            //       TRACK THE STATE OF GAME SEARCH
+            //--------------------------------------------------------------
+            -->
+        <script>
+            //TODO: make all variable generic
+            //used for item search
+            var gameTracker = [ ];
+            var countTracker= [ ];
+            var index;
+
+            //------------------------------------------------
+            // use this function to reset state
+            //------------------------------------------------
+            function resetGameTracker(){
+                localStorage.removeItem("hotgames");
+                localStorage.removeItem("numOfSearches");
+            }
+
+            function trackSearchedGamesState(){
+
+                var display = document.getElementById("tracking");
+                //resetGameTracker();
+                if(typeof(Storage) !== "undefined") {
+
+                    var game_name = $("#game_name").val().toLowerCase();
+                    //var platform_name;// = $("#platform_name2").val().toLowerCase(); //search by platform
+                    //var curr_name = ((game_name !== null) ||  (game_name !== "")) ? game_name : platform_name;
+
+                    var curr_name = game_name;
+                    function findGame(element) {
+                        return element == curr_name;
+                    }
+                    // storing our arrays as a strings
+                    // initialize storage
+                    if(localStorage.getItem("hotgames") == null){
+                        localStorage.setItem("hotgames", JSON.stringify(gameTracker));
+                        localStorage.setItem("numOfSearches", JSON.stringify(countTracker));
+                    }
+
+                    // retrieving our data and converting it back into an array
+                    retrievedGameNames = localStorage.getItem("hotgames");
+                    timesSearched = localStorage.getItem("numOfSearches");
+                    if(retrievedGameNames != null){
+                        gameTracker = JSON.parse(retrievedGameNames);
+                        countTracker = JSON.parse(timesSearched);
+
+                        index = gameTracker.findIndex(findGame);
+                        if(index == -1){ //if not tracked
+                            gameTracker.push(curr_name);
+                            countTracker.push(1);
+                            localStorage.setItem("hotgames", JSON.stringify(gameTracker));
+                            localStorage.setItem("numOfSearches", JSON.stringify(countTracker));
+                            display.innerHTML = curr_name+ " searched: " +1+" "+ "times"+"<br />";
+
+                        }else{// inc count
+                            countTracker[index] = countTracker[index] + 1;
+                            localStorage.setItem("numOfSearches", JSON.stringify(countTracker));
+                        }
+                    }
+
+                    if( typeof(gameTracker[index]) == "undefined"){
+                        gameTracker[index]  = 0;
+                        countTracker[index] = 0;
+                    }else if(gameTracker[index] == 0){
+                        display.innerHTML = "first time searched "+"<br />";
+                    }else{
+                        display.innerHTML = gameTracker[index]+ " searched: " +countTracker[index]+" "+ "times"+"<br />";
+                    }
+
+                } else {
+                    display.innerHTML = "Sorry, your browser does not support web storage...";
+                }
+            }
         </script>
 
     </body>

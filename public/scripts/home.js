@@ -66,6 +66,7 @@ $('.submit').click(function() {
     get_amazon_results(name, platform, 1);
 
 });
+//-----------------------------------------------------------
 
 // Prepare list of Amazon items from search
 function get_amazon_results(name, platform, page) {
@@ -79,52 +80,37 @@ function display_results(built_url) {
         url: built_url,
         success: function() {
             var count = 0;
-
             var xml = jqxhr.responseText;
             var xmlDoc = $.parseXML(xml);
             var $xml = $(xmlDoc);
             var Item = $xml.find("Item");
-
             $("#result_body").empty();
-
             Item.each(function() {
-
                 //console.log(Item[i]);
-
                 var title = $(this).find('ItemAttributes').find('Title').text();
                 var amazon_price = $(this).find('Offers').find('Offer').find('OfferListing')
                     .find('Price').find('FormattedPrice').text();
                 var model = $(this).find('ItemAttributes').find('Model').text();
-
                 //console.log("title: " + title + ", price: " + amazon_price + ", model: " + model);
-
                 amazon_price = Number(amazon_price.replace("$", ""));
-
                 if (amazon_price == 0)
                     amazon_price = " No Data";
-
                 games[count] = {
                     title: title,
                     model: model,
                     amazon_price: amazon_price,
                     bestbuy_price: " No Data"
                 };
-
                 count++;
             });
-
             console.log(games);
-
             get_bestbuy_prices(0);
-
-            ReactThis.setState({
-                page: 0
-            });
-
+            ReactThis.setState({page: 0});
         }
     });
 }
 
+//-----------------------------------------------------------
 // Get our second set of data by searching the model number on our Amazon results
 function get_bestbuy_prices(page) {
     console.log("______________");
@@ -192,3 +178,99 @@ $(window).on('hashchange', function() {
 
 // initialize by showing the first panel
 show('#search_games');
+
+
+/**
+//  res.setHeader('Access-Control-Allow-Origin', '*');
+// Download and build list of results into our local array
+function display_results(built_url) {
+
+    var jqxhr = $.ajax({
+        // The 'type' property sets the HTTP method.
+        // A value of 'PUT' or 'DELETE' will trigger a preflight request.
+        type: 'GET',
+
+        // The URL to make the request to.
+        url: built_url,
+
+        // The 'contentType' property sets the 'Content-Type' header.
+        // The JQuery default for this property is
+        // 'application/x-www-form-urlencoded; charset=UTF-8', which does not trigger
+        // a preflight. If you set this value to anything other than
+        // application/x-www-form-urlencoded, multipart/form-data, or text/plain,
+        // you will trigger a preflight request.
+        contentType: 'text/plain',
+
+        xhrFields: {
+            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+            // This can be used to set the 'withCredentials' property.
+            // Set the value to 'true' if you'd like to pass cookies to the server.
+            // If this is enabled, your server must respond with the header
+            // 'Access-Control-Allow-Credentials: true'.
+            withCredentials: false
+        },
+
+        headers: {
+            // Set any custom headers here.
+            // If you set any non-simple headers, your server must include these
+            // headers in the 'Access-Control-Allow-Headers' response header.
+            //https://www.w3.org/TR/cors/#access-control-allow-origin-response-header
+            //'Access-Control-Allow-Origin' : null | "*"
+            //client.setRequestHeader('Access-Control-Allow-Origin','http://localhost');
+            'Access-Control-Allow-Origin': '*'
+        },
+
+        success: function () {
+            // Here's where you handle a successful response.
+            var count = 0;
+            var xml = jqxhr.responseText;
+            var xmlDoc = $.parseXML(xml);
+            var $xml = $(xmlDoc);
+            var Item = $xml.find("Item");
+
+            $("#result_body").empty();
+
+            Item.each(function () {
+
+                //console.log(Item[i]);
+
+                var title = $(this).find('ItemAttributes').find('Title').text();
+                var amazon_price = $(this).find('Offers').find('Offer').find('OfferListing')
+                    .find('Price').find('FormattedPrice').text();
+                var model = $(this).find('ItemAttributes').find('Model').text();
+
+                //console.log("title: " + title + ", price: " + amazon_price + ", model: " + model);
+
+                amazon_price = Number(amazon_price.replace("$", ""));
+
+                if (amazon_price == 0)
+                    amazon_price = " No Data";
+
+                games[count] = {
+                    title: title,
+                    model: model,
+                    amazon_price: amazon_price,
+                    bestbuy_price: " No Data"
+                };
+
+                count++;
+            });
+
+            console.log(games);
+
+            get_bestbuy_prices(0);
+
+            ReactThis.setState({page: 0});
+        },
+
+        error: function () {
+            // Here's where you handle an error response.
+            // Note that if the error was due to a CORS issue,
+            // this function will still fire, but there won't be any additional
+            // information about the error.
+            alert('CORS: does NOT work');
+        }
+    });
+
+}
+*/

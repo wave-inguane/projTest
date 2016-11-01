@@ -86,8 +86,8 @@ div#browse_games{
     border-radius: 4px;
     overflow: auto;
     border:1px solid steelblue;
-    
 }
+
 
 .column2{
     width: 45%;
@@ -121,12 +121,19 @@ li {
 
 }
 
+p#tracking{
+    text-align: center;
+    /*color: dimgrey;*/
+    color: green;
+    font-size: medium;
+}
+
+
 .article {
     height: 10em;
     margin-bottom: 1em;
     background-color: #efefef;
 }
-
 
 .article-about{
     height: 11em;
