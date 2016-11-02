@@ -42,9 +42,16 @@ var handleSignedInUser = function(user) {
 
   console.log("EMAIL: " +  user.email);
   console.log("NAME: " +  user.displayName);
-  //
-  // CAN PERSIST TO FIREBASE
-  //
+
+  //--------------------------------------------------|
+  //        LET THE USE ACCESS OUR DATABASE
+  //          e.g: save picture, file ...
+  //--------------------------------------------------|
+  //           The code goes bellow
+
+
+
+  //--------------------------------------------------|
   if(user.email){
     //activate local storage
     trackSearchedGamesState();
@@ -84,7 +91,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 /**
- * Initializes the app.
+ * Initializes the oAuth.
  */
 var initApp = function() {
 

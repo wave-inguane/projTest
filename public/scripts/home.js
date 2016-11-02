@@ -76,6 +76,7 @@ function get_amazon_results(name, platform, page) {
 
 // Download and build list of results into our local array
 function display_results(built_url) {
+
     var jqxhr = $.ajax({
         url: built_url,
         success: function() {
@@ -107,8 +108,19 @@ function display_results(built_url) {
             get_bestbuy_prices(0);
             ReactThis.setState({page: 0});
         }
+
     });
+
 }
+
+
+var xhr = new XMLHttpRequest();
+xhr.open("get", "http://www.nczonline.net/some_resource/", true);
+xhr.onload = function(){  //instead of onreadystatechange
+    //do something
+};
+xhr.send(null);
+
 
 //-----------------------------------------------------------
 // Get our second set of data by searching the model number on our Amazon results
