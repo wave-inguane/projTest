@@ -52,10 +52,6 @@ var handleSignedInUser = function(user) {
 
 
   //--------------------------------------------------|
-  if(user.email){
-    //activate local storage
-    trackSearchedGamesState();
-  }
 
   if (user.photoURL){
     document.getElementById('photo').src = user.photoURL;
